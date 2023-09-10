@@ -1,0 +1,21 @@
+FROM node:18-bookworm-slim
+
+ARG PORT
+ARG PG_USER
+ARG PG_PSWD
+ARG PG_DB
+ARG DATABASE_URL
+ARG JWTSECRET
+
+ENV PORT=${PORT}
+ENV PG_USER=${PG_USER}
+ENV PG_PSWD=${PG_PSWD}
+ENV PG_DB=${PG_DB}
+ENV DATABASE_URL=${DATABASE_URL}
+ENV JWTSECRET=${JWTSECRET}
+
+WORKDIR /app
+USER root
+RUN apt-get update -y && apt-get install -y openssl && apt-get -y install procps
+
+CMD yarn install && yarn run start:debug
