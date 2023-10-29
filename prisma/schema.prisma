@@ -15,6 +15,7 @@ model users {
   login         String  @unique
   password      String
   name          String
+  teste         String?
   books         books[]
   requests      requests[]
 }
